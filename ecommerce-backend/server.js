@@ -19,7 +19,7 @@ app.use(cors({ origin: process.env.FRONTEND_URL || "*" }));;
 const MONGO_URL = process.env.MONGO_URI;
 
 mongoose
-  .connect(MONGO_URL, { useUnifiedTopology: true })
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((error) => {
     console.error("Error connecting to MongoDB: ", error);
