@@ -275,7 +275,7 @@ export default function AddProduct(props) {
   const updateCategory = async (categoryId, newCategoryName) => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/categories/${categoryId}`,
+        `${process.env.REACT_APP_API_URL}/api/categories/${categoryId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
