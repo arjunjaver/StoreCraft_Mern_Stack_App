@@ -1,0 +1,51 @@
+.container{
+    display: flex;
+    height: 100vh;
+}
+
+
+.left-half{
+    width: 50%;
+    
+}
+
+.right-half{
+    width: 50%;
+}
+
+.addBrand{
+    margin-top: 10%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.left-half, .right-half {
+  flex: 1;
+}
+
+.addProduct, .addCategory, .addBrand {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px;
+}
+
+form{
+    display: grid;
+}
+
+
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
