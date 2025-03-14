@@ -328,7 +328,7 @@ export default function Home(props) {
         {/* Products Section */}
         <div className="col-md-10 ">
           {loading ? (
-            <p>Loading products...</p>
+            <p className="loading-text">Loading Products<span>.</span><span>.</span><span>.</span></p>
           ) : filteredProducts.length > 0 ? (
             <div className="row">
               {filteredProducts.map((product) => (
@@ -356,8 +356,7 @@ export default function Home(props) {
                       className="card-img-top"
                       alt={product.productName}
                       style={{
-                        borderBottom:
-                          props.mode === "dark" ? "1px solid white" : "none",
+                        borderBottom: props.mode === "dark" ? "1px solid white" : "none",
                       }}
                     />
                     <div className="card-body">
