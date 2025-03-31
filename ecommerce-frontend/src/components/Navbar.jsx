@@ -13,7 +13,7 @@ export default function navbar(props) {
       >
         <div className="container-fluid">
           <Link className="navbar-brand ms-3" to="/">
-            E-Commerce
+            StoreCraft
           </Link>
           <button
             className="navbar-toggler"
