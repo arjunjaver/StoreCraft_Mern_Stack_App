@@ -9,6 +9,7 @@ export default function Home(props) {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [filters, setFilters] = useState({
     categories: [],
@@ -27,7 +28,9 @@ export default function Home(props) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/products`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_URL}/api/products`
+        );
         const data = await response.json();
         setProducts(data);
         setFilteredProducts(data);
@@ -92,8 +95,14 @@ export default function Home(props) {
       });
     }
 
+    if (searchQuery.trim() !== "") {
+      filtered = filtered.filter((product) =>
+        product.productName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
     setFilteredProducts(filtered);
-  }, [filters, products]);
+  }, [filters, products, searchQuery]);
 
   // Function to clear a specific filter
   const clearFilters = (type) => {
@@ -229,10 +238,27 @@ export default function Home(props) {
 
   return (
     <div
-      className="container-fluid mt-5"
+      className="container-fluid mt-4"
       style={{ color: props.mode === "dark" ? "white" : "black" }}
     >
       <div className="row g-0">
+        <div
+          className={`d-flex justify-content-end mb-4 px-2 ${
+            props.mode === "dark" ? "dark-mode" : ""
+          }`}
+        >
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by product name..."
+            style={{
+              width: "400px",
+              padding: "8px",
+            }}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
         {/* Filter Section */}
         <div className="col-md-2 px-3 ">
           <h4>Filters</h4>
@@ -328,7 +354,11 @@ export default function Home(props) {
         {/* Products Section */}
         <div className="col-md-10 ">
           {loading ? (
-            <p className="loading-text">Loading Products<span>.</span><span>.</span><span>.</span></p>
+            <p className="loading-text">
+              Loading Products<span>.</span>
+              <span>.</span>
+              <span>.</span>
+            </p>
           ) : filteredProducts.length > 0 ? (
             <div className="row">
               {filteredProducts.map((product) => (
@@ -356,7 +386,8 @@ export default function Home(props) {
                       className="card-img-top"
                       alt={product.productName}
                       style={{
-                        borderBottom: props.mode === "dark" ? "1px solid white" : "none",
+                        borderBottom:
+                          props.mode === "dark" ? "1px solid white" : "none",
                       }}
                     />
                     <div className="card-body">
@@ -483,5 +514,3 @@ export default function Home(props) {
     </div>
   );
 }
-
-

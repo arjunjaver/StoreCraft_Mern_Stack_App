@@ -62,3 +62,10 @@
     100% { opacity: 0; }
   }
   
+  input::placeholder {
+  color: #999; /* light placeholder for light mode */
+}
+
+.dark-mode input::placeholder {
+  color: #ccc; /* brighter placeholder for dark mode */
+}
